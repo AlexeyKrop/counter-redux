@@ -3,14 +3,16 @@ import React, {ChangeEvent, DetailedHTMLProps, InputHTMLAttributes} from 'react'
 type DefaultInputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 type propsInputType = DefaultInputPropsType & {
   callBack: (value: number) => void
-  checkValue: () => void
+  checkValue?: () => void
+  value: number
 }
 export const Input = (props: propsInputType) => {
+  console.log(props.value)
   const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
     props.callBack(+e.currentTarget.value)
   }
   const onBlurCallBack = () => {
-    props.checkValue()
+    props.checkValue && props.checkValue()
   }
   return(
     <input value={props.value} className={props.className} onChange={onChangeCallback} onBlur={onBlurCallBack} type={props.type}/>

@@ -8,13 +8,13 @@ import {AppStateType, store} from "./Bll/store";
 import {getStartValueAC} from "./Bll/counter-reducer";
 
 function App() {
-  const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
-  const dispatch = useDispatch()
-  const getStartValue = (value: number) => {
-    if (value >= 0) {
-      dispatch(getStartValueAC(value))
-    }
-  }
+  // const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
+  // const dispatch = useDispatch()
+  // const getStartValue = (value: number) => {
+  //   if (value >= 0) {
+  //     dispatch(getStartValueAC(value))
+  //   }
+  // }
   return (
     <div className="App">
       <div className="container">
