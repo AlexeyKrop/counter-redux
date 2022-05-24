@@ -14,7 +14,9 @@ type setDisplayProps = {
   startValue: number
   maxValue: number
 }
+
 const SetDisplay = (props: any) => {
+  console.log(props.store)
   return (
     <div style={displaySettings}>
       <div className='counter__settings'><span>max value:</span> <Input  checkValue={props.checkValue} className={props.startValue >= props.maxValue  ? 'inputError': ''} value={props.maxValue}  callBack={props.getMaxValue} type={'text'}/>
