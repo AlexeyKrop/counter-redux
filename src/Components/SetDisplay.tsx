@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Input from "./Input";
-import {getMaxValueAC, getStartValueAC} from "../Bll/counter-reducer";
-import {AppStoreType} from "../Bll/store";
+import Button from "./Button";
 
 const displaySettings = {
   width: '90%',
@@ -10,29 +9,37 @@ const displaySettings = {
   border: '4px solid grey',
 }
 type setDisplayProps = {
+  setValues: (startValue: number, maxValue: number) => void
   // getStartValue: (value: number) => void
   // getMaxValue: (value: number) => void
   // checkValue: () => void
-  // startValue: number
-  // maxValue: number
-  store: AppStoreType
+  startValue: number
+  maxValue: number
+
 }
 
-const SetDisplay = (props: any) => {
+const SetDisplay = (props: setDisplayProps) => {
+  //useSelect
+  //useDispatch
+  const [startValue, setStartValue] = useState(0)
+  const [maxValue, setMaxValue] = useState(0)
   const getStartValue = (value: number) => {
     if (value >= 0) {
-      props.store.dispatch(getStartValueAC(value))
+      setStartValue(value)
     }
   }
+
   const getMaxValue = (value: number) => {
     if (value >= 0) {
-      props.store.dispatch(getMaxValueAC(value))
+      setMaxValue(value)
     }
   }
-  const startValue = props.store.getState().counter.startValue
-  const maxValue = props.store.getState().counter.maxValue
-  console.log(maxValue)
+  const setValues = () => {
+    props.setValues(startValue, maxValue)
+  }
+
   return (
+    <>
     <div style={displaySettings}>
       <div className='counter__settings'><span>max value:</span>
         <Input value={maxValue} callBack={getMaxValue} type={'text'}/>
@@ -41,6 +48,10 @@ const SetDisplay = (props: any) => {
         <Input value={startValue} callBack={getStartValue} type={'text'}/>
       </div>
     </div>
+      <div className="button__group button__group_settings">
+        <Button callBack={setValues} name={'Set'}/>
+      </div>
+    </>
   );
 };
 

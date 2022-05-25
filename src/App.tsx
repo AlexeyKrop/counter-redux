@@ -4,17 +4,18 @@ import Button from "./Components/Button";
 import SetDisplay from "./Components/SetDisplay";
 import Display from "./Components/Display";
 import {useDispatch, useSelector} from "react-redux";
-import {AppStateType, store} from "./Bll/store";
-import {getStartValueAC} from "./Bll/counter-reducer";
+import {AppStateType} from "./Bll/store";
+import {SetValuesForSetDisplayAC} from "./Bll/counter-reducer";
 
 function App() {
-  // const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
-  // const dispatch = useDispatch()
-  // const getStartValue = (value: number) => {
-  //   if (value >= 0) {
-  //     dispatch(getStartValueAC(value))
-  //   }
-  // }
+  const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
+  const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue)
+
+  const dispatch = useDispatch()
+  const setValueInSetDisplay = (startValue: number, maxValue: number) => {
+    dispatch(SetValuesForSetDisplayAC(startValue, maxValue))
+  }
+
   return (
     <div className="App">
       <div className="container">
@@ -26,10 +27,10 @@ function App() {
           </div>
         </div>
         <div className="wrapper-counter wrapper-counter__setting">
-          <SetDisplay store={store}/>
-          <div className="button__group button__group_settings">
-            <Button name={'Set'}/>
-          </div>
+          <SetDisplay setValues={setValueInSetDisplay} startValue={startValue} maxValue={maxValue}/>
+          {/*<div className="button__group button__group_settings">*/}
+          {/*  <Button name={'Set'}/>*/}
+          {/*</div>*/}
         </div>
       </div>
     </div>

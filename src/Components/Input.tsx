@@ -7,7 +7,6 @@ type propsInputType = DefaultInputPropsType & {
   value: number
 }
 export const Input = (props: propsInputType) => {
-  console.log(props.value)
   const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
     props.callBack(+e.currentTarget.value)
   }
