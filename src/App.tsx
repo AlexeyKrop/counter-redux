@@ -14,10 +14,13 @@ function App() {
   let [disabled, setDisabled] = useState(true)
   const dispatch = useDispatch()
   const setValueInSetDisplay = (startValue: number, maxValue: number) => {
-    setDisabled(false)
+    setDisabled(!disabled)
     dispatch(SetValuesForSetDisplayAC(startValue, maxValue))
   }
   const getCounterIncrement = () => {
+    if(count === maxValue - 1){
+      setDisabled(true)
+    }
     dispatch(IncrementCountAC(count))
   }
   const getResetICount = () => {
@@ -30,7 +33,7 @@ function App() {
           <Display count={count} maxCount={maxValue} startCount = {startValue}  error={''}/>
           <div className="button__group">
             <Button disabled={disabled} callBack={getCounterIncrement} name={'Inc'}/>
-            <Button disabled={disabled} callBack={getResetICount} name={'Reset'}/>
+            <Button disabled={count === startValue || maxValue < startValue || count === 0} callBack={getResetICount} name={'Reset'}/>
           </div>
         </div>
         <div className="wrapper-counter wrapper-counter__setting">
