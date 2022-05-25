@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Button from "./Components/Button";
-import SetDisplay from "./Components/SetDisplay";
+import SetDisplay from "./Components/SetDisplay/SetDisplay";
 import Display from "./Components/Display";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "./Bll/store";
