@@ -10,11 +10,15 @@ export const counterReducer = (state:InitialStateType =  initialState, action: C
  switch (action.type) {
    case "SET_VALUES":
      return{
-       ...state, startValue: action.startValue, maxValue: action.maxValue
+       ...state, startValue: action.startValue, maxValue: action.maxValue, count: action.startValue
      }
    case "INC_COUNT":
      return{
        ...state, count: action.count + 1
+     }
+   case "RESET_COUNT":
+     return{
+       ...state, count: action.count
      }
    default:
     return state
@@ -25,6 +29,8 @@ export const counterReducer = (state:InitialStateType =  initialState, action: C
 
 export const SetValuesForSetDisplayAC = (startValue: number, maxValue: number) => ({type: 'SET_VALUES', startValue: startValue, maxValue: maxValue} as const)
 export const IncrementCountAC = (count: number) => ({type: 'INC_COUNT', count: count} as const)
-type CounterReducerAT = SetValuesForSetDisplayAT | IncrementCountAT
+export const ResetCountAC = (count: number) => ({type: 'RESET_COUNT', count: count} as const)
+type CounterReducerAT = SetValuesForSetDisplayAT | IncrementCountAT | ResetCountAT
 type SetValuesForSetDisplayAT = ReturnType<typeof SetValuesForSetDisplayAC>
 type IncrementCountAT = ReturnType<typeof IncrementCountAC>
+type ResetCountAT = ReturnType<typeof ResetCountAC>
