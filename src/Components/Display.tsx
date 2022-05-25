@@ -11,6 +11,7 @@ const count = {
 type displayPropsType = {
   count: number
   maxCount: number
+  startCount: number
   error: string
 }
 const Display: React.FC<displayPropsType> = (props) => {
