@@ -15,10 +15,8 @@ type setDisplayProps = {
 }
 
 const SetDisplay = (props: setDisplayProps) => {
-  //useSelect
-  //useDispatch
-  const [startValue, setStartValue] = useState(0)
-  const [maxValue, setMaxValue] = useState(0)
+  const [startValue, setStartValue] = useState(props.startValue)
+  const [maxValue, setMaxValue] = useState(props.maxValue)
   let [error, setError] = useState('')
   const getStartValue = (value: number) => {
     if (value >= 0) {
