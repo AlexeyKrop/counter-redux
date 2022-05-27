@@ -10,9 +10,11 @@ export const Input = (props: propsInputType) => {
   const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
     props.callBack(+e.currentTarget.value)
   }
+
   const onBlurCallBack = () => {
     props.checkValue && props.checkValue()
   }
+
   return(
     <input value={props.value} className={props.className} onChange={onChangeCallback} onBlur={onBlurCallBack} type={props.type}/>
   )
