@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import './App.css';
-import Button from "./Components/Button";
 import SetDisplay from "./Components/SetDisplay/SetDisplay";
 import Display from "./Components/Display";
 import {useDispatch, useSelector} from "react-redux";
@@ -13,28 +12,29 @@ function App() {
   const count = useSelector<AppStateType, number>(state => state.counter.count)
   let [disabled, setDisabled] = useState(true)
   const dispatch = useDispatch()
+
+
   const setValueInSetDisplay = (startValue: number, maxValue: number) => {
     setDisabled(!disabled)
     dispatch(SetValuesForSetDisplayAC(startValue, maxValue))
   }
+
   const getCounterIncrement = () => {
     if(count === maxValue - 1){
       setDisabled(true)
     }
     dispatch(IncrementCountAC(count))
   }
+
   const getResetICount = () => {
     dispatch(ResetCountAC(startValue))
   }
+
   return (
     <div className="App">
       <div className="container">
         <div className="wrapper-counter">
-          <Display count={count} maxCount={maxValue} startCount = {startValue}  error={''}/>
-          <div className="button__group">
-            <Button disabled={disabled} callBack={getCounterIncrement} name={'Inc'}/>
-            <Button disabled={count === startValue || maxValue < startValue || count === 0} callBack={getResetICount} name={'Reset'}/>
-          </div>
+          <Display getCounterIncrement={getCounterIncrement} getResetICount={getResetICount} disabled={disabled} count={count} maxCount={maxValue} startCount = {startValue}  error={''}/>
         </div>
         <div className="wrapper-counter wrapper-counter__setting">
           <SetDisplay setValues={setValueInSetDisplay} startValue={startValue} maxValue={maxValue}/>

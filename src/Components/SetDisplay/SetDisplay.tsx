@@ -18,19 +18,23 @@ const SetDisplay = (props: setDisplayProps) => {
   const [startValue, setStartValue] = useState(props.startValue)
   const [maxValue, setMaxValue] = useState(props.maxValue)
   let [error, setError] = useState('')
+
   const getStartValue = (value: number) => {
     if (value >= 0) {
       setStartValue(value)
     }
   }
+
   const getMaxValue = (value: number) => {
     if (value >= 0) {
       setMaxValue(value)
     }
   }
+
   const setValues = () => {
     props.setValues(startValue, maxValue)
   }
+
   const checkValue = () => {
     if(maxValue < startValue){
       setError('start value must be less than the maximum value')
@@ -38,6 +42,7 @@ const SetDisplay = (props: setDisplayProps) => {
       setError('')
     }
   }
+
   return (
     <>
     <div style={displaySettings}>
