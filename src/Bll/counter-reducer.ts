@@ -4,7 +4,7 @@ let initialState = {
   count: 0
 }
 
-type InitialStateType = typeof initialState
+export type InitialStateType = typeof initialState
 export const counterReducer = (state:InitialStateType =  initialState, action: CounterReducerAT):InitialStateType => {
 
  switch (action.type) {
