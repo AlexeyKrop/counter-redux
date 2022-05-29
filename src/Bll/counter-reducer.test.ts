@@ -1,4 +1,4 @@
-import {counterReducer, IncrementCountAC, InitialStateType} from "./counter-reducer";
+import {counterReducer, IncrementCountAC, InitialStateType, ResetCountAC} from "./counter-reducer";
 
 test('check increment count', () => {
 
@@ -14,4 +14,19 @@ test('check increment count', () => {
       maxValue: 10,
       startValue: 0,
 })
+})
+test('check reset count', () => {
+
+  const startState: InitialStateType = {
+    startValue: 0,
+    maxValue: 10,
+    count: 10
+  }
+  const action = ResetCountAC(0)
+  const endState = counterReducer(startState, action)
+  expect(endState).toStrictEqual({
+    count: 0,
+    maxValue: 10,
+    startValue: 0,
+  })
 })
