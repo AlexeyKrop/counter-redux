@@ -7,7 +7,11 @@ test('check increment count', () => {
     maxValue: 10,
     count: 0
   }
-  const action = IncrementCountAC(1)
+  const action = IncrementCountAC(0)
   const endState = counterReducer(startState, action)
-  expect(endState).toBe({})
+  expect(endState).toStrictEqual({
+      count: 1,
+      maxValue: 10,
+      startValue: 0,
+})
 })
